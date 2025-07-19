@@ -10,10 +10,11 @@ namespace Library
     {
         public int AdminId;
 
-        public void RegisterAdmin(int adminId, string name, string email)
+        public Admin(int adminId, string adminName, string adminEmail)
         {
             AdminId = adminId;
-            RegisterUser(name, email);
+            Name = adminName;
+            Email = adminEmail;
         }
     }
 }

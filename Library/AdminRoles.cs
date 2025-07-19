@@ -16,9 +16,9 @@ namespace Library
         int TotalCopies;
         int AvailableCopies;
 
-        private List<Books> bookList = new List<Books>();
+        public List<Books> bookList = new List<Books>();
         private List<Student> studentList = new List<Student>();
-        private List<Books> issuedBooksList = new List<Books>();
+        public List<Books> issuedBooksList = new List<Books>();
         public void AddNewBook()
         {
             Console.WriteLine("Enter Book ID:");
