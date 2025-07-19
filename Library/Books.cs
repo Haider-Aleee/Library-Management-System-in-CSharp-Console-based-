@@ -13,8 +13,8 @@ namespace Library
         public string Author;
         public int ISBN;
         public string Genre;
-        int TotalCopies;
-        int AvailableCopies;
+        public int TotalCopies;
+        public int AvailableCopies;
 
         public Books(int id, string title, string author, int isbn, string genre, int totalCopies, int availableCopies)
         {
