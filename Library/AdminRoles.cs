@@ -9,10 +9,10 @@ namespace Library
     public class AdminRoles
     {
         public int BookId;
-        public string ?Title;
-        public string ?Author;
+        public string? Title;
+        public string? Author;
         public int ISBN;
-        public string ?Genre;
+        public string? Genre;
         int TotalCopies;
         int AvailableCopies;
 
@@ -37,7 +37,7 @@ namespace Library
             AvailableCopies = TotalCopies; // Initially, all copies are available
 
             Books book = new Books(BookId, Title, Author, ISBN, Genre, TotalCopies, AvailableCopies);
-            
+
             bookList.Add(book);
 
             Console.WriteLine($"Book '{book.Title}' by {book.Author} added successfully with ID {book.Id}.");
@@ -50,7 +50,7 @@ namespace Library
             Title = Console.ReadLine();
             foreach (Books book in bookList)
             {
-                if(book.Title == Title)
+                if (book.Title == Title)
                 {
                     bookList.Remove(book);
                     Console.WriteLine($"Book '{book.Title}' removed successfully.");
@@ -104,7 +104,7 @@ namespace Library
             Console.WriteLine("Enter Book Title to issue:");
             Title = Console.ReadLine();
             Console.WriteLine("Enter Student ID:");
-            int StudentId= Convert.ToInt32(Console.ReadLine());
+            int StudentId = Convert.ToInt32(Console.ReadLine());
 
             foreach (Books book in bookList)
             {
@@ -122,7 +122,7 @@ namespace Library
                                 break;
                             }
                         }
-                      
+
                     }
                     else
                     {
@@ -172,5 +172,66 @@ namespace Library
                 Console.WriteLine($"ID: {student.StudentId}, Name: {student.Name}, Email: {student.Email}");
             }
         }
+
+        public void AddNewStudent()
+        {
+            Console.WriteLine("Enter Student ID:");
+            int studentId = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter Student Name:");
+            string name = Console.ReadLine();
+            Console.WriteLine("Enter Student Email:");
+            string email = Console.ReadLine();
+            Student student = new Student();
+            student.RegisterStudent(studentId, name, email);
+            studentList.Add(student);
+            Console.WriteLine($"Student '{student.Name}' added successfully with ID {student.StudentId}.");
+        }
+
+        public void RemoveStudent()
+        {
+            Console.WriteLine("Enter Student ID to remove:");
+            int studentId = Convert.ToInt32(Console.ReadLine());
+            foreach (Student student in studentList)
+            {
+                if (student.StudentId == studentId)
+                {
+                    studentList.Remove(student);
+                    Console.WriteLine($"Student '{student.Name}' removed successfully.");
+                    return;
+                }
+            }
+            Console.WriteLine("Student not found.");
+        }
+
+        public void SearchBookByTitle()
+        {
+            Console.WriteLine("Enter Book Title to search:");
+            string title = Console.ReadLine();
+            foreach (Books book in bookList)
+            {
+                if (book.Title.Equals(title, StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine($"Book found: ID: {book.Id}, Title: {book.Title}, Author: {book.Author}, ISBN: {book.ISBN}, Genre: {book.Genre}, Total Copies: {book.TotalCopies}, Available Copies: {book.AvailableCopies}");
+                    return;
+                }
+            }
+            Console.WriteLine("Book not found.");
+        }
+
+        public void SearchStudentById()
+        {
+            Console.WriteLine("Enter Student ID to search:");
+            int studentId = Convert.ToInt32(Console.ReadLine());
+            foreach (Student student in studentList)
+            {
+                if (student.StudentId == studentId)
+                {
+                    Console.WriteLine($"Student found: ID: {student.StudentId}, Name: {student.Name}, Email: {student.Email}");
+                    return;
+                }
+            }
+            Console.WriteLine("Student not found.");
+        }
+
     }
 }
